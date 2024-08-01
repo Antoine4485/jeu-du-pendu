@@ -6,7 +6,7 @@ from turtle import *
 class Hanged:
 
     def __init__(self):
-        self.word = self._get_word()
+        self._word = self._get_word()
         self._play()
 
     def _get_word(self):
@@ -20,7 +20,7 @@ class Hanged:
                 return word
 
     def _play(self):
-        response_letters = ["-" for _ in self.word]
+        response_letters = ["-" for _ in self._word]
         nb_errors = 0
         max_nb_errors = 7
 
@@ -29,20 +29,20 @@ class Hanged:
             if not self._is_valid_letter(letter):
                 print("Lettre non valide")
                 continue
-            if letter not in self.word:
+            if letter not in self._word:
                 nb_errors += 1
                 self._show_hanged_element(nb_errors)
                 if nb_errors < max_nb_errors:
                     continue
-                print(f"\nPartie perdue, le mot à trouver était : {self.word}")
+                print(f"\nPartie perdue, le mot à trouver était : {self._word}")
                 break
             # on affiche la lettre aux emplacements où elle se trouve dans le mot à chercher
-            for i in range(len(self.word)):
-                if self.word[i] == letter:
+            for i in range(len(self._word)):
+                if self._word[i] == letter:
                     response_letters[i] = letter
             response_word = "".join(response_letters)
             print(response_word)
-            if response_word == self.word:
+            if response_word == self._word:
                 print("\nPartie gagnée !")
                 break
 
